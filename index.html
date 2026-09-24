@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PC1 Study Guide — Global Marketing</title>
+<style>
+  :root{
+    --bg: #0d0f14;
+    --bg-alt: #12151d;
+    --card: #171b26;
+    --card-border: #262c3d;
+    --text: #e8e9ee;
+    --text-dim: #a8adba;
+    --text-faint: #767c8d;
+    --accent: #6ea8fe;
+    --high: #ff6b6b;
+    --high-bg: rgba(255,107,107,0.14);
+    --medium: #ffb84d;
+    --medium-bg: rgba(255,184,77,0.14);
+    --low: #6fcf97;
+    --low-bg: rgba(111,207,151,0.14);
+    --verify: #c792ea;
+    --verify-bg: rgba(199,146,234,0.16);
+    --week-accent: #4fd1c5;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    background: var(--bg) !important;
+    color: var(--text);
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color-scheme: dark;
+  }
+  body { min-height: 100vh; padding-bottom: 60px; }
+  header {
+    background: var(--bg-alt);
+    border-bottom: 1px solid var(--card-border);
+    padding: 22px 20px 18px;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+  h1 {
+    margin: 0 0 4px;
+    font-size: 1.35rem;
+    color: var(--text);
+    font-weight: 700;
+  }
+  .subtitle {
+    color: var(--text-dim);
+    font-size: 0.88rem;
+    margin: 0 0 14px;
+  }
+  .scope-note {
+    background: rgba(79,209,197,0.10);
+    border: 1px solid rgba(79,209,197,0.35);
+    color: var(--text);
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 0.82rem;
+    margin-bottom: 14px;
+  }
+  .scope-note strong { color: var(--week-accent); }
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 14px;
+    align-items: center;
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    margin-bottom: 14px;
+  }
+  .legend .tag { font-size: 0.7rem; }
+  .legend span.expl { color: var(--text-faint); }
+  .tabs {
+    display: flex;
+    gap: 6px;
+  }
+  .tab-btn {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    color: var(--text-dim);
+    padding: 9px 18px;
+    border-radius: 8px 8px 0 0;
+    cursor: pointer;
+    font-size: 0.92rem;
+    font-weight: 600;
+  }
+  .tab-btn.active {
+    background: var(--bg);
+    color: var(--text);
+    border-bottom: 2px solid var(--accent);
+    color: var(--accent);
+  }
+  main { max-width: 860px; margin: 0 auto; padding: 20px 18px 40px; }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+  .week-block { margin-bottom: 30px; }
+  .week-heading {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    border-bottom: 2px solid var(--week-accent);
+    padding-bottom: 6px;
+    margin-bottom: 12px;
+  }
+  .week-heading h2 {
+    font-size: 1.05rem;
+    margin: 0;
+    color: var(--week-accent);
+  }
+  .week-heading .week-sub {
+    font-size: 0.82rem;
+    color: var(--text-faint);
+  }
+  .week-note {
+    background: rgba(199,146,234,0.08);
+    border-left: 3px solid var(--verify);
+    padding: 8px 12px;
+    font-size: 0.82rem;
+    color: var(--text-dim);
+    margin-bottom: 14px;
+    border-radius: 0 6px 6px 0;
+  }
+  .week-note strong { color: var(--verify); }
+  .tag {
+    display: inline-block;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    padding: 2px 7px;
+    border-radius: 5px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    border: 1px solid transparent;
+  }
+  .tag-HIGH { color: var(--high); background: var(--high-bg); border-color: var(--high); }
+  .tag-MEDIUM { color: var(--medium); background: var(--medium-bg); border-color: var(--medium); }
+  .tag-LOW { color: var(--low); background: var(--low-bg); border-color: var(--low); }
+  .tag-VERIFY { color: var(--verify); background: var(--verify-bg); border-color: var(--verify); }
+
+  /* Executive summary */
+  .exec-item {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    padding: 10px 12px;
+    margin-bottom: 8px;
+  }
+  .exec-item .exec-head {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+    flex-wrap: wrap;
+  }
+  .exec-num { color: var(--accent); font-weight: 700; font-size: 0.85rem; }
+  .exec-title { font-weight: 600; font-size: 0.9rem; color: var(--text); }
+  .exec-item ul { margin: 0; padding-left: 18px; }
+  .exec-item li { font-size: 0.85rem; color: var(--text-dim); margin-bottom: 3px; line-height: 1.35; }
+
+  /* Detailed summary accordions */
+  details.acc {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 8px;
+    margin-bottom: 8px;
+    overflow: hidden;
+  }
+  details.acc > summary {
+    cursor: pointer;
+    padding: 10px 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    font-size: 0.9rem;
+    font-weight: 600;
+    list-style: none;
+  }
+  details.acc > summary::-webkit-details-marker { display: none; }
+  details.acc > summary::before {
+    content: "▸";
+    color: var(--text-faint);
+    margin-right: 2px;
+    font-size: 0.8rem;
+    transition: transform 0.15s ease;
+  }
+  details.acc[open] > summary::before { transform: rotate(90deg); }
+  .acc-num { color: var(--accent); font-weight: 700; }
+  .acc-body {
+    padding: 2px 14px 14px 30px;
+    font-size: 0.86rem;
+    color: var(--text-dim);
+    line-height: 1.55;
+  }
+  .acc-body p { margin: 0 0 10px; }
+  .acc-body strong { color: var(--text); }
+  .source-line {
+    margin-top: 10px;
+    font-size: 0.76rem;
+    color: var(--text-faint);
+    border-top: 1px dashed var(--card-border);
+    padding-top: 8px;
+    font-style: italic;
+  }
+  .source-line strong { color: var(--text-faint); font-style: normal; }
+  footer {
+    max-width: 860px;
+    margin: 30px auto 0;
+    padding: 14px 18px;
+    color: var(--text-faint);
+    font-size: 0.75rem;
+    border-top: 1px solid var(--card-border);
+  }
+  @media (max-width: 480px) {
+    header { padding: 16px 14px; }
+    main { padding: 16px 12px 30px; }
+    h1 { font-size: 1.15rem; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>PC1 Study Guide — Global Marketing</h1>
+  <p class="subtitle">Universidad ESAN · Global Marketing (VIII ciclo) · Unit Test #1 preparation</p>
+  <div class="scope-note">
+    <strong>Scope:</strong> this guide covers syllabus subtopics <strong>1.1 through 2.4.2</strong> only (Weeks 1–4), exactly matching the syllabus line "Unit Test #1 From 1.1 to 2.4.2." Week 5 (starting at 3.1, International Market Segmentation) is deliberately <strong>excluded</strong>.
+  </div>
+  <div class="legend">
+    <span class="tag tag-HIGH">HIGH</span><span class="expl">in both slide deck AND reading, or an explicit named framework</span>
+    <span class="tag tag-MEDIUM">MEDIUM</span><span class="expl">single source only, but a numbered/named exam-relevant item</span>
+    <span class="tag tag-LOW">LOW</span><span class="expl">supporting example/illustration only</span>
+    <span class="tag tag-VERIFY">VERIFY</span><span class="expl">conflicting sources or a confirmed gap in the provided material</span>
+  </div>
+  <div class="tabs">
+    <button class="tab-btn active" id="btn-exec" onclick="showTab('exec')">Executive Summary</button>
+    <button class="tab-btn" id="btn-detail" onclick="showTab('detail')">Detailed Summary</button>
+  </div>
+</header>
+<main>
+  <div class="tab-panel active" id="panel-exec"></div>
+  <div class="tab-panel" id="panel-detail"></div>
+</main>
+<footer>
+  Built from the Week 1–4 slide decks and the four matched Kotabe &amp; Helsen reading excerpts (pp. 1-31, pp. 32-60, pp. 93-124, pp. 174-203) scoped for PC1. Two sourcing gaps confirmed during construction: (1) subtopic 1.10 has no content in either matched Week 3 source; (2) the second Week 4 reading (Czinkota &amp; Ronkainen, Chap. 8, pp. 235-265) was not among the files available for this guide. Both are flagged inline rather than filled from general knowledge.
+</footer>
+
+<script>
+const DATA = [
+{
+  week: 1,
+  title: "Global Marketing Fundamentals",
+  weekSub: "Aug 17–22 · Kotabe & Helsen Chap. 1, pp. 1-31",
+  note: null,
+  subtopics: [
+    {
+      num: "1.1",
+      title: "The Globalization Imperative",
+      priority: "HIGH",
+      bullets: [
+        "Globalization = growing economic interdependence between countries, seen in rising cross-border flows of goods, services, capital, and know-how.",
+        "Global marketing has become imperative: firms that stay purely domestic face pressure from rivals exploiting scale, sourcing, and demand advantages across borders.",
+        "The slide deck frames both the drivers of globalization and its costs/risks — this is a balanced view, not a one-sided 'globalization is good' claim."
+      ],
+      detail: `<p>Globalization reflects the increasing integration of national economies through trade, investment, and information flows; firms increasingly cannot treat the "home market" and "foreign markets" as separate strategic problems. The reading opens Chapter 1 by arguing that global marketing competence is now a core requirement of competitive strategy, not an optional extension of domestic marketing.</p>
+      <p>The slide deck complements this with the forces that push firms toward globalization and the costs/challenges that come with operating internationally (competitive pressure, cost/resource efficiency needs, and the risk of being out-competed by rivals who globalize first).</p>
+      <p><span class="tag tag-VERIFY">VERIFY</span> The exact enumerated bullet list of "forces driving globalization" and "costs of globalization" as presented slide-by-slide should be rechecked directly against the deck before the exam; this guide summarizes them conceptually rather than reproducing the literal bullet list.</p>`,
+      source: "Week 1 Session 1 Globalization Imperative 2026-2.md (opening sections) · Kotabe & Helsen pp. 1-31, \"Why Global Marketing Is Imperative\""
+    },
+    {
+      num: "1.2",
+      title: "Globalization of markets: convergence and divergence",
+      priority: "HIGH",
+      bullets: [
+        "Convergence: consumer tastes/markets become more similar worldwide, favoring standardized global marketing (Levitt's classic thesis).",
+        "Divergence: cultural, economic, political and legal differences persist, forcing adaptation of the marketing mix by country.",
+        "Crossvergence (CDC Framework): global and local influences blend into a new, hybrid outcome — neither pure standardization nor pure local adaptation.",
+        "The EU / Brexit example illustrates both sides at once: deep regional convergence, and a national divergence reaction against it."
+      ],
+      detail: `<p>The slide deck introduces the <strong>CDC Framework</strong> (Convergence – Divergence – Crossvergence) as the organizing lens for this subtopic. <strong>Convergence</strong> holds that global communication, trade, and travel are making consumer needs and behaviors similar across countries, favoring standardized marketing programs (Theodore Levitt's classic argument). <strong>Divergence</strong> holds that deep-seated cultural, economic, political and legal differences persist, favoring adaptation of the marketing mix by country. <strong>Crossvergence</strong> is the third, synthesis outcome: rather than global or local simply "winning," converging global influences interact with persistent local particularities to produce a new, hybrid pattern of consumption or business practice that is neither fully global nor fully local.</p>
+      <p>The reading discusses this same debate using the European Union and Brexit as a live illustration: European economic integration pushed convergence (a single market, shared regulation, free movement of goods and capital), while Brexit demonstrated the durability of national/local divergence (political sovereignty, national identity, disagreement over the costs and benefits of integration) even inside a highly converged regional bloc.</p>
+      <p>Students should be able to state which forces support convergence, which support divergence, and give the crossvergence outcome as the synthesis case.</p>`,
+      source: "Week 2 Session 2 Evolution of Global Marketing 2026-1.md, CDC Framework section · Kotabe & Helsen pp. 1-31, \"Globalization of Markets: Convergence, Divergence\" (EU/Brexit discussion)"
+    },
+    {
+      num: "1.3",
+      title: "Evolution of Global Marketing",
+      priority: "HIGH",
+      bullets: [
+        "Five stages of internationalization: Domestic → Export → International → Multinational → Global.",
+        "Paired management orientations (EPRG): Ethnocentric → Polycentric → Regiocentric → Geocentric.",
+        "Four generic international strategies — Global, Transnational, International, Multidomestic — trade off global integration pressure against local responsiveness pressure, each shown with company examples."
+      ],
+      detail: `<p>The slide deck presents a table of the <strong>5 stages of evolution of global marketing</strong>: (1) <strong>Domestic</strong> — the firm operates and thinks only within its home market; (2) <strong>Export</strong> — the firm begins selling abroad but production and core strategy remain home-centered; (3) <strong>International</strong> — the firm adapts products and enters multiple foreign markets, largely treating each on its own terms; (4) <strong>Multinational</strong> — the firm operates through largely autonomous country subsidiaries, each optimized locally (a polycentric orientation); (5) <strong>Global</strong> — the firm integrates strategy across markets, treating the world (or a region) as one coordinated arena.</p>
+      <p>This progression links directly to the <strong>EPRG orientation typology</strong> (Ethnocentric, Polycentric, Regiocentric, Geocentric), which recurs under subtopic 1.9.4 in the Week 3 material applied to cultural/organizational orientation. The reading presents essentially the same 5-stage framework, confirming it as the authoritative version for the exam.</p>
+      <p>Separately, the <strong>four-strategy matrix</strong> (Global, Transnational, International, Multidomestic Strategy) trades off pressure for global integration against pressure for local responsiveness, and the slide deck illustrates each quadrant with company examples.</p>
+      <p><span class="tag tag-VERIFY">VERIFY</span> The specific companies used as examples for each of the four strategy quadrants should be rechecked directly against the slide deck; exact company-to-quadrant assignments were not retained at high confidence in this synthesis.</p>`,
+      source: "Week 2 Session 2 Evolution of Global Marketing 2026-1.md, \"Evolution of Global Marketing\" table and 4-strategy matrix section · Kotabe & Helsen pp. 1-31, \"Evolution of Global Marketing\""
+    },
+    {
+      num: "1.4",
+      title: "International Business, International Trade and the Multinational Companies",
+      priority: "HIGH",
+      bullets: [
+        "International Trade: cross-border exchange of goods/services between independent parties. International Business: the broader set of all cross-border commercial transactions, including trade, investment and intra-firm transfers.",
+        "An MNC owns and controls value-adding operations in more than one country, not just exports to it.",
+        "Modes of international operation: exporting/importing, foreign direct investment, and licensing.",
+        "Appendix (reading-only): five classic theories explaining why international trade/investment happens — Comparative Advantage, Factor Endowment, International Product Cycle, Internalization/Transaction Cost, Resource-Based View."
+      ],
+      detail: `<p>The slide deck defines <strong>International Business</strong> around why firms engage across borders, and distinguishes the basic modes of operation: exporting/importing (selling or buying finished goods across borders without local production), investment modes (establishing owned operations abroad, i.e. FDI), and licensing (granting a foreign partner rights to technology, brand, or process in exchange for fees/royalties, without direct equity investment).</p>
+      <p>The reading formally distinguishes <strong>International Trade</strong> (an exchange, typically between unrelated firms in different countries) from <strong>International Business</strong> (the full universe of cross-border commercial activity: trade, FDI, licensing, intra-company transfers), and defines the <strong>Multinational Corporation</strong> as a firm that owns and manages revenue-generating operations in at least one country other than its home country.</p>
+      <p>The reading's Appendix (reading-only, not confirmed on the slides) extends this subtopic with five classic theories:</p>
+      <p><strong>Comparative Advantage Theory</strong> (Ricardo) — a country should specialize in and export what it produces at the lowest opportunity cost relative to other goods, even without an absolute advantage in anything.<br>
+      <strong>Factor Endowment Theory</strong> — countries export goods that intensively use their locally abundant factors of production (land, labor, capital) and import goods requiring their scarce factors.<br>
+      <strong>International Product Cycle Theory</strong> — a product moves through four stages (introduction in the innovating/high-income country, growth with rising foreign production, maturity with production shifting to lower-cost countries, decline/import back into the original innovating country) as technology standardizes and cost pressure increases.<br>
+      <strong>Internalization / Transaction Cost Theory</strong> — firms own foreign operations directly (rather than license or export) when the cost of using external markets (contracting, monitoring, protecting proprietary knowledge) exceeds the cost of managing the activity internally.<br>
+      <strong>Resource-Based View / Appropriability Theory</strong> — firms expand internationally to exploit valuable, hard-to-imitate resources (brand, technology, know-how) across more markets while protecting their ability to capture (appropriate) the returns rather than losing them to imitators or partners.</p>`,
+      source: "Week 1 Session 1 Globalization Imperative 2026-2.md, IB definition and modes-of-operation sections · Kotabe & Helsen pp. 1-31, \"International Trade, International Business, and Multinational Companies\" and Chapter 1 Appendix"
+    }
+  ]
+},
+{
+  week: 2,
+  title: "Economic Environment",
+  weekSub: "Aug 24–29 · Kotabe & Helsen Chap. 2, pp. 32-60",
+  note: null,
+  subtopics: [
+    {
+      num: "1.5",
+      title: "Economic Environment: Impact on the microeconomic variables",
+      priority: "HIGH",
+      bullets: [
+        "Macro conditions (growth, inflation, exchange rates, fiscal/monetary stability) filter down into microeconomic variables: consumer purchasing power, firm costs, pricing decisions, investment attractiveness.",
+        "The slide deck uses Peru's macro fundamentals (IMF 2026) as the applied case for a stable macro environment supporting firm-level decisions.",
+        "The reading frames this as the 'intertwined world economy': shocks transmit across borders into consumer demand and firm costs."
+      ],
+      detail: `<p>The slide deck traces the logic from macroeconomic indicators down to microeconomic, firm-level consequences: a country's growth rate, inflation control, and currency stability affect consumer disposable income and price sensitivity (microeconomic variables), which in turn shape how a foreign entrant should price, position, and forecast demand. The deck uses Peru's economic fundamentals, citing IMF 2026 assessments, as a live example of how analysts characterize a country's macro stability before recommending market entry or investment decisions.</p>
+      <p>The reading develops the broader conceptual case under "The Intertwined World Economy": because economies are increasingly interconnected through trade and capital flows, a shock in one country's macroeconomic environment (a currency crisis, a commodity price swing, a monetary policy shift) can transmit quickly into other countries' consumer demand and firm costs, meaning global marketers must monitor macroeconomic conditions well beyond their immediate target market.</p>`,
+      source: "W2 Economic environment.md, macro-to-micro linkage and Peru IMF 2026 sections · Kotabe & Helsen pp. 32-60, \"The Intertwined World Economy\""
+    },
+    {
+      num: "1.6",
+      title: "Competitiveness of countries: Comparative & Competitive advantages",
+      priority: "HIGH",
+      bullets: [
+        "Comparative Advantage (Ricardo): a country specializes in what it produces relatively more efficiently, even without an absolute advantage.",
+        "Competitive Advantage (Porter): competitiveness depends on firm/industry-level factors, not just natural endowments.",
+        "Porter's Diamond Model: Factor Conditions, Demand Conditions, Related and Supporting Industries, Firm Strategy/Structure/Rivalry.",
+        "Applied to Peru specifically, alongside international competitiveness index rankings; the reading gives the equivalent Global Competitiveness Ranking exhibit."
+      ],
+      detail: `<p>This subtopic pairs a classical trade theory (Comparative Advantage) with a firm/industry-level theory of competitiveness (<strong>Porter's Diamond Model</strong>, applied in the slide deck to Peru's case). Comparative Advantage explains why countries trade at all (each specializes in relatively efficient production); Porter's Diamond explains why some countries/industries become internationally competitive leaders rather than simply cost-based exporters. It identifies four interacting determinants of national competitive advantage in an industry: the availability and quality of specialized factors of production, the sophistication and size of home demand that pushes firms to innovate, the presence of strong related and supporting industries (clusters/suppliers), and the intensity of domestic rivalry and the firm strategies this rivalry produces.</p>
+      <p><span class="tag tag-VERIFY">VERIFY</span> confirm the exact four-point labeling of the Diamond and whether government/chance were presented as explicit additional elements in the deck, or only implied.</p>
+      <p>The slide deck ties this directly to Peru's competitiveness profile and international competitiveness index rankings used to benchmark Peru against other economies. The reading presents the complementary <strong>Global Competitiveness Ranking</strong> exhibit — the textbook's standard cross-country comparison of competitiveness scores, useful as reading-quiz-style testable material alongside the slide-based Peru case.</p>`,
+      source: "W2 Economic environment.md, Comparative vs Competitive Advantage and Porter's Diamond Model sections · Kotabe & Helsen pp. 32-60, \"Country Competitiveness\" (Global Competitiveness Ranking exhibit)"
+    },
+    {
+      num: "1.7 / 1.7.1 / 1.7.2",
+      title: "Consequences of market integration processes: Regional Economic Agreements and Free Trade Agreements",
+      priority: "HIGH",
+      bullets: [
+        "5 Levels of Regional Economic Integration, in increasing depth: Free Trade Area → Customs Union → Common Market → Monetary Union → Political Union.",
+        "Free Trade Area: internal tariffs removed, independent external policy. Customs Union: + common external tariff. Common Market: + free movement of labor/capital. Monetary Union: + shared currency. Political Union: + shared political institutions.",
+        "Trade creation (more efficient bloc producers displace less efficient domestic production) vs. trade diversion (buying from a less efficient bloc partner instead of a more efficient outsider, purely for the tariff preference).",
+        "Peru's own FTA network is the applied case for 1.7.2."
+      ],
+      detail: `<p>The reading presents the canonical <strong>Five Levels of Regional Economic Integration</strong>, in increasing order of depth: <strong>Free Trade Area</strong> (internal tariffs/quotas eliminated among members, each keeps its own external trade policy); <strong>Customs Union</strong> (adds a common external tariff applied uniformly to non-member imports); <strong>Common Market</strong> (adds free mobility of labor and capital among members, not just goods); <strong>Monetary Union</strong> (adds a single currency and centralized monetary policy); <strong>Political Union</strong> (the deepest level, adding shared political governance/sovereignty pooling).</p>
+      <p>The reading situates this ladder within the history of cooperative global trade agreements (GATT, its evolution into the WTO, and the Doha round), useful as background on why regional and multilateral integration efforts exist side by side.</p>
+      <p>The slide deck operationalizes this with the applied consequences of integration: <strong>trade creation</strong> (integration lets buyers purchase from the most efficient producer within the bloc, replacing less efficient domestic production — a net efficiency gain) versus <strong>trade diversion</strong> (integration causes buyers to switch from a more efficient non-member supplier to a less efficient member supplier purely to avoid the external tariff — a net efficiency loss globally), plus the effect of integration on investment flows into and within the bloc. The deck also covers Peru's Free Trade Agreements specifically as the country-level application of 1.7.2.</p>`,
+      source: "W2 Economic environment.md, Regional Economic Agreements/trade creation-diversion and Peru's FTAs sections · Kotabe & Helsen pp. 32-60, \"Regional Economic Arrangements\" (five levels of integration) and \"Evolution of Cooperative Global Trade Agreements\" (GATT/WTO/Doha)"
+    },
+    {
+      num: "1.8",
+      title: "Peru's position on FDI and International Trade",
+      priority: "MEDIUM",
+      bullets: [
+        "Covered only in the slide deck: the assigned Kotabe & Helsen chapter is written at a general/global level and does not treat Peru specifically.",
+        "Tagged MEDIUM because it is single-sourced, even though it is an explicitly numbered, examinable syllabus subtopic.",
+        "For any Peru market-size or FDI figure, Euromonitor (not the textbook) is the syllabus's authoritative external source."
+      ],
+      detail: `<p>This subtopic is covered exclusively by the Week 2 "Economic environment" slide deck, which presents Peru's strategic global position, its FDI inflows, and its international trade positioning as a direct extension of the Comparative/Competitive Advantage and Regional Integration material applied at the country level.</p>
+      <p>Because the assigned reading (Kotabe & Helsen pp. 32-60) is written at the level of general international economics/theory rather than Peru-specific data, there is no reading-based cross-check available for this subtopic. The applied Peru figures and positioning claims should be verified directly against the slide deck and, if external validation of any market-size or FDI figure is needed, against Euromonitor rather than the textbook.</p>`,
+      source: "W2 Economic environment.md, \"Peru's FDI and strategic global position\" section. No matching reading: Kotabe & Helsen pp. 32-60 does not cover Peru specifically."
+    }
+  ]
+},
+{
+  week: 3,
+  title: "Social, Cultural, Political and Legal Environment",
+  weekSub: "Aug 31–Sep 5 · Kotabe & Helsen Chap. 1 pp. 25-31 (Reading Quiz #1) and Chap. 4, pp. 93-124",
+  note: "The matched slide deck and reading for this week cover culture in full but contain <strong>no content on Political &amp; Legal Environments</strong>, even though the syllabus explicitly lists it as subtopic 1.10. This is flagged below as a confirmed sourcing gap rather than filled in from general knowledge.",
+  subtopics: [
+    {
+      num: "1.9",
+      title: "Social & Cultural Environments: Elements of Culture",
+      priority: "HIGH",
+      bullets: [
+        "Culture = the learned, shared system of values, beliefs and behaviors of a group, transmitted across generations.",
+        "Elements of culture (reading): material life, language, social interactions (incl. relationship concepts like Chinese guanxi), aesthetics, religion, education.",
+        "The slide deck adds subcultures as internal variation within a national culture."
+      ],
+      detail: `<p>The slide deck and the matched reading together define culture as a learned, shared, and transmitted system of meaning, values, and behavior specific to a group, and both distinguish culture from <strong>subculture</strong> (a distinct group within a broader culture that shares the dominant culture's traits but adds its own).</p>
+      <p>The reading's "Elements of Culture" section breaks culture into: <strong>material life</strong> (a society's material/technological environment and how it uses objects), <strong>language</strong> (spoken and non-verbal communication, a frequent source of translation and meaning failures for global marketers), <strong>social interactions</strong> (norms governing relationships, including relationship-based business practices such as <em>guanxi</em> in Chinese business culture), <strong>aesthetics</strong> (a society's sense of beauty, design and color meaning), <strong>religion</strong> (belief systems shaping consumption norms, taboos and calendars), and <strong>education</strong> (including the reading's PISA international-comparison exhibit, which includes Peru's data point as an applied benchmark).</p>`,
+      source: "Week 3 Social and Cultural Environments 2026-1.md, cultures/subcultures and elements-of-culture sections · Kotabe & Helsen pp. 93-124, \"Elements of Culture\" (incl. PISA/education exhibit with Peru data)"
+    },
+    {
+      num: "1.9.1",
+      title: "Comparisons between cultures",
+      priority: "HIGH",
+      bullets: [
+        "Hofstede's 6 Cultural Dimensions (with country scores, confirmed in both slide deck and reading): PDI, IDV, MAS, UAI, LTO, IND.",
+        "High-context vs. Low-context cultures (Edward Hall): meaning carried by shared context/relationships vs. carried explicitly in words.",
+        "GLOBE study (9 dimensions) and World Value Survey (WVS): reading-only, not confirmed on the slides — tag MEDIUM."
+      ],
+      detail: `<p><strong>Hofstede's framework</strong> is the anchor comparison tool, confirmed with full definitions and country scores in both sources: <strong>Power Distance (PDI)</strong> — the degree to which less powerful members of a society accept unequal power distribution; <strong>Individualism vs. Collectivism (IDV)</strong> — whether people primarily see themselves as independent individuals or as part of cohesive in-groups; <strong>Masculinity vs. Femininity (MAS)</strong> — whether a society's dominant values are assertive/achievement-oriented or nurturing/quality-of-life-oriented; <strong>Uncertainty Avoidance (UAI)</strong> — a society's tolerance for ambiguity and unstructured situations; <strong>Long-Term vs. Short-Term Orientation (LTO)</strong> — valuing perseverance and future reward vs. tradition and quick results; <strong>Indulgence vs. Restraint (IND)</strong> — the degree to which a society allows free gratification of desires vs. regulating it through strict social norms.</p>
+      <p><strong>High/Low-context culture theory</strong> (Edward Hall) is the second confirmed tool: high-context communication depends on shared background, relationship history, and non-verbal signals to carry meaning; low-context communication relies on explicit, direct verbal statements. This distinction matters directly for advertising style, negotiation, and business communication across markets.</p>
+      <p><span class="tag tag-MEDIUM">MEDIUM</span> The reading additionally introduces the <strong>GLOBE study</strong> (a nine-dimension extension/refinement of Hofstede-style comparison from a large multi-country leadership/culture research program) and the <strong>World Value Survey (WVS)</strong> (a long-running international survey program tracking values and belief change over time). Neither was confirmed present in the slide deck.</p>`,
+      source: "Week 3 Social and Cultural Environments 2026-1.md, Hofstede and High/Low-context sections · Kotabe & Helsen pp. 93-124, \"Cross-Cultural Comparisons\" (Hofstede with country scores, High/Low-Context, GLOBE, World Value Survey)"
+    },
+    {
+      num: "1.9.2",
+      title: "Cultural adaptation",
+      priority: "HIGH",
+      bullets: [
+        "Self-Reference Criterion (SRC): unconsciously judging a foreign culture through the lens of one's own culture, leading to misjudgment.",
+        "Lee's 4-step method corrects for SRC: define the problem in home-culture terms, redefine in foreign-culture terms without judgment, isolate the SRC influence, redefine and solve without it.",
+        "Out-group homogeneity bias: perceiving an unfamiliar (foreign) group as more similar internally than it really is, reinforcing stereotyping."
+      ],
+      detail: `<p>The reading introduces the <strong>Self-Reference Criterion (SRC)</strong> as the core mechanism explaining cross-cultural marketing mistakes: managers unconsciously evaluate a foreign market's behaviors, preferences, or business practices using their own cultural frame of reference as the unstated standard of "normal," leading to systematic misinterpretation of local behavior.</p>
+      <p><strong>Lee's four-step method</strong> is the corrective discipline: (1) define the business problem or goal in terms of home-country cultural traits, habits, or norms; (2) define the problem or goal in terms of the foreign culture's traits, habits, or norms, making no value judgments; (3) isolate the SRC influence in the problem and examine how it complicates the situation; (4) redefine the problem without the SRC influence and solve it for the foreign market situation.</p>
+      <p>The reading also introduces <strong>out-group homogeneity bias</strong>, the cognitive tendency to see an unfamiliar cultural group as more uniform/interchangeable than one's own group, which compounds SRC-driven errors by making stereotypes about foreign consumers feel more justified than they are.</p>
+      <p>The slide deck's parallel content on strategies for handling cultural differences is the practical, decision-oriented counterpart of this same subtopic.</p>`,
+      source: "Week 3 Social and Cultural Environments 2026-1.md, cultural-difference-handling-strategies section · Kotabe & Helsen pp. 93-124, \"Adapting to Cultures\" (Self-Reference Criterion, Lee's four-step method, out-group homogeneity bias)"
+    },
+    {
+      num: "1.9.3",
+      title: "Marketing mix related to cultural factors",
+      priority: "HIGH",
+      bullets: [
+        "Culture affects every 4P element: product meaning/use, pricing perception (bargaining norms, price-quality signaling), promotion style, and channel trust.",
+        "The reading's dedicated 'Culture and the Marketing Mix' section is the primary confirmed source, with worked examples per element."
+      ],
+      detail: `<p>The reading devotes a dedicated section to how cultural values, symbols and norms shape each 4Ps element in a foreign market: <strong>Product</strong> decisions must account for how a product's meaning, appropriate use occasions, and even color/shape symbolism vary by culture; <strong>Pricing</strong> must account for cultural attitudes toward bargaining, price-quality signaling, and payment norms; <strong>Distribution</strong> must account for the cultural role and trust level of different channel types (traditional markets vs. modern retail, for example); <strong>Promotion</strong> must account for language, imagery, humor and appeals that read appropriately within a given culture's norms and communication style (tying back to the High/Low-context distinction under 1.9.1).</p>
+      <p><span class="tag tag-VERIFY">VERIFY</span> The exact company/brand examples used for each 4P element in the reading were not individually retained at high fidelity in this synthesis pass — recheck the reading text directly for literal case names.</p>`,
+      source: "Kotabe & Helsen pp. 93-124, \"Culture and the Marketing Mix\" (Product/Pricing/Distribution/Promotion subsections)"
+    },
+    {
+      num: "1.9.4",
+      title: "Cultural organization",
+      priority: "HIGH",
+      bullets: [
+        "EPRG orientation table: Ethnocentric, Polycentric, Regiocentric, Geocentric — how a firm's management culture and staffing philosophy shape its cross-border organization.",
+        "Ethnocentric = home practices exported unchanged. Polycentric = each host country treated as unique, local managers. Regiocentric = coordinated at regional level. Geocentric = worldwide, integrated view."
+      ],
+      detail: `<p>The slide deck presents the <strong>EPRG orientation table</strong> (Ethnocentric, Polycentric, Regiocentric, Geocentric) as the framework for how a firm's management culture and staffing philosophy shape its approach to organizing across borders. This is the same orientation typology introduced under 1.3 (Evolution of Global Marketing) in connection with the 5-stage internationalization model; here it is applied specifically to the cultural/organizational dimension: an <strong>ethnocentric</strong> firm staffs foreign operations with home-country nationals and exports home-market assumptions; a <strong>polycentric</strong> firm hires and empowers host-country nationals and lets each subsidiary adapt independently, at the cost of coordination and scale economies; a <strong>regiocentric</strong> firm organizes management and strategy around geographic regions, balancing local relevance with some scale efficiency; a <strong>geocentric</strong> firm selects talent and shapes strategy on a worldwide basis regardless of nationality, integrating global efficiency with local sensitivity.</p>
+      <p>Students should be able to place a described company scenario into the correct EPRG category and connect the answer back to the corresponding stage of internationalization from subtopic 1.3.</p>`,
+      source: "Week 3 Social and Cultural Environments 2026-1.md, Ethnocentrism/Polycentrism/Regiocentrism/Geocentrism orientation table (cross-referenced with Week 2 Session 2 deck's use of the same typology under 1.3)"
+    },
+    {
+      num: "1.9.5",
+      title: "Consumer behavior within different cultural environments",
+      priority: "HIGH",
+      bullets: [
+        "Value systems (deeply held beliefs about what is desirable) drive cross-cultural consumer behavior differences more than surface-level taste variation does.",
+        "Connects back to Hofstede and High/Low-context (1.9.1): those dimensions are, in effect, measured value-system differences."
+      ],
+      detail: `<p>This subtopic draws on the reading's "Value Systems" section, which frames consumer behavior differences across cultures as downstream consequences of differing underlying value systems (what a culture considers desirable, important, or taboo) rather than as arbitrary taste variation. This connects directly back to the Hofstede and High/Low-context frameworks from 1.9.1, since those dimensions are, in effect, measured value-system differences.</p>
+      <p>The Week 3 slide deck's coverage of behavior practices provides the applied, example-driven counterpart, illustrating how these value differences show up in actual purchase, usage and decision-making behavior in specific markets.</p>`,
+      source: "Week 3 Social and Cultural Environments 2026-1.md, behavior-practices section · Kotabe & Helsen pp. 93-124, \"Value Systems\""
+    },
+    {
+      num: "1.10",
+      title: "Political & Legal Environments",
+      priority: "VERIFY",
+      bullets: [
+        "[VERIFY] No content for this subtopic was found in either the matched Week 3 slide deck or the matched Week 3 reading.",
+        "This is a confirmed sourcing gap, not a content judgment — check the professor's own slides/notes or ask in class before the exam."
+      ],
+      detail: `<p><span class="tag tag-VERIFY">VERIFY — confirmed gap</span></p>
+      <p>Both provided Week 3 materials — the slide deck ("Week 3 Social and Cultural Environments 2026-1.md") and the assigned reading (Kotabe & Helsen, Chapter 4, pp. 93-124, "Global Cultural Environment and Buying Behavior") — are entirely about the cultural and social environment. Neither contains any section on political systems, political risk, legal systems, regulatory environments, or related concepts that would normally correspond to a "Political & Legal Environments" topic.</p>
+      <p>This guide deliberately does <strong>not</strong> fill this gap with general Global Marketing textbook knowledge from outside the provided files, per the scope constraints used to build it. Independently confirm whether this subtopic was covered in a separate class session, handout, or slide not included among the files scoped for this guide, since it is explicitly listed as examinable (1.10, within the PC1 range 1.1–2.4.2).</p>`,
+      source: "None found. Checked against the full Week 3 Social and Cultural Environments 2026-1.md deck and the full Kotabe & Helsen pp. 93-124 chapter — no matching content in either."
+    }
+  ]
+},
+{
+  week: 4,
+  title: "Global Marketing Research",
+  weekSub: "Sep 7–12 · Kotabe & Helsen Chap. 6, pp. 174-203, plus Czinkota/Ronkainen Chap. 8, pp. 235-265 (not available)",
+  note: "Two sourcing notes for this week: (1) the syllabus's second assigned reading for Week 4, <strong>Czinkota &amp; Ronkainen, Chapter 8, pp. 235-265, is not among the twelve provided reading files</strong> — none of the twelve files are from that textbook at all, so this guide relies only on the Kotabe &amp; Helsen excerpt and the slide deck for Week 4. (2) The slide deck file is named \"W4_5,\" suggesting it might span weeks 4 and 5, but after reading it in full it contains <strong>no segmentation, targeting, or positioning content</strong> (Week 5's topics) at all — every slide maps to Week 4 topics 2.1–2.4.2, so nothing from this deck was excluded.",
+  subtopics: [
+    {
+      num: "2.1",
+      title: "International market research",
+      priority: "HIGH",
+      bullets: [
+        "A 7-step international market research process, confirmed in both slide deck and reading, extends domestic research to handle cross-country comparability and coordination.",
+        "The reading illustrates the process and its pitfalls with the Lego and Oreo cases, plus roughly five characteristic cross-country research challenges.",
+        "Translation/equivalence: back-translation, parallel translation, scalar equivalence (reading-only, MEDIUM).",
+        "Survey response biases (reading-only, MEDIUM): courtesy bias, yea-saying/nay-saying, social desirability bias, Extreme Response Style (ERS), Anchor Contraction Effect (ACE)."
+      ],
+      detail: `<p>The slide deck and the matched reading both present essentially the same <strong>seven-step international market research process</strong> (problem/objective definition through to reporting and use of findings), extending the standard domestic marketing research sequence with the added complexity of coordinating research design, sampling, and interpretation across multiple countries and cultures simultaneously.</p>
+      <p>The reading frames the recurring challenges of doing this well using company cases (a <strong>Lego</strong> case and an <strong>Oreo</strong> case — <span class="tag tag-VERIFY">VERIFY</span> the exact narrative details of each case directly if needed for an exam answer) and enumerates roughly five characteristic difficulties multinational researchers face: achieving genuinely comparable data across countries, language/translation problems, differing survey response norms, unequal availability/quality of secondary data across markets, and coordinating fieldwork logistics/agencies across borders.</p>
+      <p><span class="tag tag-MEDIUM">MEDIUM (reading-only)</span> Questionnaire design and translation methods: <strong>back-translation</strong> (translating the questionnaire into the target language, then having a separate translator translate it back to check for meaning drift) and <strong>parallel translation</strong> (multiple independent translators produce versions that are then compared and reconciled). <strong>Scalar equivalence</strong> ensures that rating scales carry the same practical meaning and are used with the same response tendency across cultures.</p>
+      <p><span class="tag tag-MEDIUM">MEDIUM (reading-only)</span> Cross-cultural survey response biases: <strong>courtesy bias</strong> (answering what the interviewer is believed to want to hear), <strong>yea-saying/nay-saying</strong> (a tendency to agree, or disagree, regardless of content), <strong>social desirability bias</strong> (shading answers toward what is socially acceptable), <strong>Extreme Response Style (ERS)</strong> (choosing scale endpoints rather than the middle), and the <strong>Anchor Contraction Effect (ACE)</strong> (compressing responses toward the scale's anchor points).</p>`,
+      source: "W4_5 Tools for Global Market Research.md, market information system/research process sections · Kotabe & Helsen pp. 174-203, \"Global Marketing Research\" (7-step process, Lego/Oreo cases, research challenges, questionnaire design/translation, response biases)"
+    },
+    {
+      num: "2.2",
+      title: "Evaluation of market potential within a global environment",
+      priority: "HIGH",
+      bullets: [
+        "Method of Analogy: estimate potential by comparison to a similar, known market; a longitudinal variant compares development stages over time.",
+        "Trade Audit: estimate market size from trade/customs and distribution-channel data.",
+        "Chain Ratio Method: narrow a broad population top-down through qualifying ratios — commonly TAM → SAM → TM → Market Share.",
+        "Cross-Sectional Regression Analysis: statistically estimate potential using regression across comparable markets."
+      ],
+      detail: `<p>This subtopic shows unusually close alignment between the slide deck and the reading's "Market Size Assessment" section, making all four methods HIGH priority individually.</p>
+      <p>The <strong>Method of Analogy</strong> estimates a target market's potential by finding a comparable market where the relevant product/category is already established and using its trajectory as a benchmark; a <strong>longitudinal variant</strong> compares the current state of the target market to an earlier point in the analogous market's own development (rather than to the analogous market's current state), useful when the two markets are at different absolute stages of development but expected to follow a similar adoption path.</p>
+      <p>The <strong>Trade Audit</strong> method estimates market size using data from the trade and distribution channel itself (import/export/customs records, wholesaler or retailer shipment data) — a bottom-up, transaction-based estimate rather than a survey-based one.</p>
+      <p>The <strong>Chain Ratio Method</strong> builds an estimate top-down by applying successively narrower qualifying ratios to a large starting population figure. The slide deck organizes this as: <strong>TAM</strong> (Total Addressable Market — the broadest total demand figure for the category) → <strong>SAM</strong> (Serviceable Available Market — the portion the firm could realistically reach given its business model/channels/regulatory reach) → <strong>TM</strong> (Target Market — the specific segment the firm intends to pursue) → an expected <strong>Market Share</strong> assumption applied to reach a firm-specific sales estimate.</p>
+      <p><strong>Cross-Sectional Regression Analysis</strong> estimates market potential statistically, regressing a demand-related outcome against explanatory variables measured across a cross-section of comparable markets/regions/time periods, then predicting potential in the target market from its own values on those variables.</p>`,
+      source: "W4_5 Tools for Global Market Research.md, market sizing methods section · Kotabe & Helsen pp. 174-203, \"Market Size Assessment\" (Method of Analogy incl. longitudinal variant, Trade Audit, Chain Ratio/TAM-SAM-TM-MS, Cross-Sectional Regression Analysis)"
+    },
+    {
+      num: "2.3",
+      title: "Secondary data sources",
+      priority: "HIGH",
+      bullets: [
+        "Secondary data = information already collected for another purpose, reused by the researcher; slide deck and reading give near-identical resource lists.",
+        "Five classic problems: accuracy, age, reliability, comparability, and lumping (data aggregated too broadly to be useful)."
+      ],
+      detail: `<p>Both the slide deck and the reading present closely matching exhibits/lists of secondary data resources useful for international market research (government trade statistics, international organization databases, industry/trade association reports, and commercial market research firms among the general categories covered).</p>
+      <p>The reading names and explains the five recurring problems that make secondary data less reliable internationally than in a single, well-documented domestic market: <strong>accuracy</strong> (data may be estimated, self-reported, or politically influenced rather than independently verified); <strong>age</strong> (data may be several years old by the time it's published or accessed, a bigger problem in fast-changing emerging markets); <strong>reliability</strong> (differences in how rigorously and consistently the original data was collected country to country); <strong>comparability</strong> (different countries define categories, units, or time periods differently, making cross-country comparison misleading unless adjusted for); and <strong>lumping</strong> (data reported at an aggregated level that obscures meaningful differences, such as combining structurally different countries into one regional figure, or dissimilar products into one category total).</p>`,
+      source: "W4_5 Tools for Global Market Research.md, secondary data sources section · Kotabe & Helsen pp. 174-203, \"Secondary Data Resources\" and \"Problems with Secondary Data\" (accuracy/age/reliability/comparability/lumping)"
+    },
+    {
+      num: "2.4 / 2.4.1",
+      title: "Business intelligence tools: Databases to quantify market opportunities",
+      priority: "HIGH",
+      bullets: [
+        "New Market Information Technologies: POS scanner data, consumer panel data, single-source data, CATI (phone) and CAPI (in-person, tech-assisted) interviewing.",
+        "These tools observe actual buying behavior (not just stated intentions) and connect it to marketing exposure, at a granularity older aggregate sources cannot match."
+      ],
+      detail: `<p>The reading's "New Market Information Technologies" section and the slide deck both cover this same set of modern data-collection technologies:</p>
+      <p><strong>POS (point-of-sale) scanner data</strong> captures actual transaction-level purchases as they are scanned at retail checkout, giving real, continuously updated sales and price data rather than survey-based estimates. <strong>Consumer panel data</strong> comes from a recruited, ongoing panel of households or individuals who report purchases over time, allowing researchers to track the same consumers' behavior longitudinally (brand switching, repeat purchase, category penetration). <strong>Single-source data</strong> links, for the same household or individual, both what they buy and what marketing/media they were exposed to, allowing a direct read on marketing effectiveness rather than two separately-collected, harder-to-connect datasets. <strong>CATI</strong> (Computer-Assisted Telephone Interviewing) and <strong>CAPI</strong> (Computer-Assisted Personal Interviewing) are technology-assisted interviewing modes that speed up questionnaire administration, reduce interviewer recording error, and allow more complex skip-logic than paper-based interviewing.</p>`,
+      source: "W4_5 Tools for Global Market Research.md, new market information technologies section · Kotabe & Helsen pp. 174-203, \"New Market Information Technologies\" (POS scanner data, consumer panel data, single-source data, CATI/CAPI)"
+    },
+    {
+      num: "2.4.2",
+      title: "Global market research management",
+      priority: "HIGH",
+      bullets: [
+        "Managing global research = selecting/coordinating research agencies across countries, plus resolving the Emic (locally-designed) vs. Etic (standardized, comparable) dilemma.",
+        "The reading's BMW example shows how firms blend a shared cross-country measurement core with room for local adaptation, rather than choosing one extreme."
+      ],
+      detail: `<p>This subtopic covers the managerial/organizational side of international research: selecting a research agency (or agencies) capable of operating across the required countries, considering cost, quality control, and comparability of method across markets, and then resolving the recurring <strong>Emic vs. Etic</strong> dilemma in cross-country research design.</p>
+      <p>The <strong>Emic</strong> approach designs and interprets each country's research on its own cultural terms, maximizing local relevance and validity but sacrificing direct cross-country comparability. The <strong>Etic</strong> approach imposes one standardized instrument and framework across all countries to maximize comparability, but risks missing locally meaningful nuances or asking culturally inappropriate questions in some markets.</p>
+      <p>The reading illustrates how a real multinational manages this trade-off using a <strong>BMW example</strong> describing a coordinated, multi-step process for aligning positioning research across several European countries: rather than picking one extreme, the coordination process blends a shared cross-country measurement core with room for local adaptation and interpretation at each step, presented as the practical resolution firms actually use.</p>`,
+      source: "W4_5 Tools for Global Market Research.md, managing global research/agency selection section · Kotabe & Helsen pp. 174-203, \"Managing Global Marketing Research\" (agency selection, Emic vs Etic dilemma, BMW coordination example)"
+    }
+  ]
+}
+];
+
+function renderExec() {
+  const panel = document.getElementById('panel-exec');
+  let html = '';
+  DATA.forEach(w => {
+    html += `<div class="week-block">
+      <div class="week-heading"><h2>Week ${w.week} — ${w.title}</h2><span class="week-sub">${w.weekSub}</span></div>`;
+    if (w.note) html += `<div class="week-note"><strong>Note:</strong> ${w.note}</div>`;
+    w.subtopics.forEach(s => {
+      html += `<div class="exec-item">
+        <div class="exec-head">
+          <span class="exec-num">${s.num}</span>
+          <span class="exec-title">${s.title}</span>
+          <span class="tag tag-${s.priority}">${s.priority}</span>
+        </div>
+        <ul>${s.bullets.map(b => `<li>${b}</li>`).join('')}</ul>
+      </div>`;
+    });
+    html += `</div>`;
+  });
+  panel.innerHTML = html;
+}
+
+function renderDetail() {
+  const panel = document.getElementById('panel-detail');
+  let html = '';
+  DATA.forEach(w => {
+    html += `<div class="week-block">
+      <div class="week-heading"><h2>Week ${w.week} — ${w.title}</h2><span class="week-sub">${w.weekSub}</span></div>`;
+    if (w.note) html += `<div class="week-note"><strong>Note:</strong> ${w.note}</div>`;
+    w.subtopics.forEach(s => {
+      html += `<details class="acc">
+        <summary><span class="acc-num">${s.num}</span> ${s.title} <span class="tag tag-${s.priority}">${s.priority}</span></summary>
+        <div class="acc-body">
+          ${s.detail}
+          <div class="source-line"><strong>Source:</strong> ${s.source}</div>
+        </div>
+      </details>`;
+    });
+    html += `</div>`;
+  });
+  panel.innerHTML = html;
+}
+
+function showTab(tab) {
+  document.getElementById('panel-exec').classList.toggle('active', tab === 'exec');
+  document.getElementById('panel-detail').classList.toggle('active', tab === 'detail');
+  document.getElementById('btn-exec').classList.toggle('active', tab === 'exec');
+  document.getElementById('btn-detail').classList.toggle('active', tab === 'detail');
+}
+
+renderExec();
+renderDetail();
+</script>
+</body>
+</html>
